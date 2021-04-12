@@ -9,9 +9,8 @@
     </h1>
   </div>
 
-  <% if @user.errors.any? %>
     <%= render 'shared/error_messages', model: f.object %>
-  <% end %>
+    
   <div class="form-group">
     <div class='form-text-wrap'>
       <label class="form-text">ニックネーム</label>
