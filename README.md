@@ -1,17 +1,21 @@
 ## itemsテーブル
 
-| Column   | Type   | Options     |
-| -------- | ------ | ----------- |
-| item_name| string | null: false |
-| text     | text   | null: false |
-| category | string | null: false |
-| status   | string | null: false |
-| from     | string | null: false |
-| days     | string | null: false |
-| price    | string | null: false |
+| Column                   | Type       | Options     |
+| ------------------------ | ---------- | ----------- |
+| item_name                | string     | null: false |
+| item_info                | text       | null: false |
+| item_category            | string     | null: false |
+| item_sales_status        | string     | null: false |
+| item_shipping_fee_status | string     | null: false |
+| item_prefecture          | string     | null: false |
+| item_scheduled_delivery  | string     | null: false |
+| item_price               | string     | null: false |
+| user                     | references | foreign_key: true |
+
 
 ### Association
 - belongs_to :user
+- has_one :items
 
 
 ## usersテーブル
@@ -30,3 +34,18 @@
 ### Association
 - has_many :items
 
+
+## buyersテーブル
+| Column           | Type       | Options            |
+| ---------------- | ---------- | ------------------ |
+| user             | references | foreign_key: true  |
+| item             | references | foreign_key: true  |
+| post_code        | string     | null: false        |
+| prefecture       | text       | null: false        |
+| municipalities   | text       | null: false        |
+| address          | text       | null: false        |
+
+
+### Association
+- belongs_to :item
+- belongs_to :user
