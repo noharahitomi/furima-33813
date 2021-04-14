@@ -15,8 +15,7 @@
 
 ### Association
 - belongs_to :user
-- has_one :buyers
-- has_many :purchases
+- has_one :purchase
 
 
 ## usersテーブル
@@ -35,7 +34,6 @@
 ### Association
 - has_many :items
 - has_many :purchases
-- has_many :buyers
 
 
 ## purchasesテーブル
@@ -46,23 +44,22 @@
 
 
 ### Association
-- belongs_to :item
+- has_one :item
 - belongs_to :user
-- belongs_to :buyers
+- has_one :addressee
 
 
 
-## buyersテーブル
+## addresseesテーブル
 
 | Column           | Type       | Options            |
 | ---------------- | ---------- | ------------------ |
-| user             | references | foreign_key: true  |
 | post_code        | string     | null: false        |
-| prefecture       | text       | null: false        |
+| prefecture_id    | integer    | null: false        |
 | municipalities   | text       | null: false        |
 | address          | text       | null: false        |
+| building_name    | text       | null: false        |
+| tel_number       | text       | null: false        |
 
 ### Association
-- belongs_to :user
-- belongs_to :item
-- belongs_to :buyer
+has_one :purchase
