@@ -2,14 +2,14 @@
 
 | Column                   | Type       | Options     |
 | ------------------------ | ---------- | ----------- |
-| item_name                | string     | null: false |
-| item_info                | text       | null: false |
-| item_category_id            | integer    | null: false |
-| item_sales_status_id        | integer    | null: false |
-| item_shipping_fee_status_id | integer    | null: false |
-| item_prefecture_id          | integer    | null: false |
-| item_scheduled_delivery_id  | integer    | null: false |
-| item_price               | integer       | null: false |
+| name                | string     | null: false |
+| info                | text       | null: false |
+| category_id            | integer    | null: false |
+| sales_status_id        | integer    | null: false |
+| shipping_fee_status_id | integer    | null: false |
+| prefecture_id          | integer    | null: false |
+| scheduled_delivery_id  | integer    | null: false |
+| price               | integer       | null: false |
 | user                     | references    | foreign_key: true |
 
 
@@ -56,10 +56,10 @@
 | ---------------- | ---------- | ------------------ |
 | post_code        | string     | null: false        |
 | prefecture_id    | integer    | null: false        |
-| municipalities   | text       | null: false        |
-| address          | text       | null: false        |
-| building_name    | text       | null: false        |
-| tel_number       | text       | null: false        |
+| municipalities   | string     | null: false        |
+| address          | string     | null: false        |
+| building_name    | string     | null: false        |
+| tel_number       | string     | null: false        |
 
 ### Association
-has_one :purchase
+belongs_to :purchase
