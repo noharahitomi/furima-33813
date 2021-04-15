@@ -9,5 +9,5 @@ class Item < ApplicationRecord
   has_one_attached :image
 
   validates :name,:info,:price, presence: true
-  validates :category,:sales_status,:shipping_fee_status,:prefecture,:scheduled_delivery, numericality: { other_than: 1 }
+  validates :category_id,:sales_status_id,:shipping_fee_status_id,:prefecture_id,:scheduled_delivery_id, numericality: { other_than: 1 }
 end
