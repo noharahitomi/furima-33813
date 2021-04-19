@@ -120,7 +120,7 @@
   </div>
   <%# /FURIMAの特徴 %>
 
-  <%= @items.each do |item| %>
+  <%# @items.each do |item| %>
   <div class='item-contents'>
     <h2 class='title'>ピックアップカテゴリー</h2>
     <%= link_to '新規投稿商品', "#", class: "subtitle" %>
@@ -178,7 +178,7 @@
       <%# //商品がない場合は以下のダミー商品が表示されるようにしましょう %>
     </ul>
   </div>
-  <% end %>
+  <%# end %>
 </div>
 <%= link_to( new_item_path, class: 'purchase-btn') do %>
   <span class='purchase-btn-text'>出品する</span>
