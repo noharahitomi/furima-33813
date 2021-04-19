@@ -45,6 +45,9 @@ RSpec.describe Item, type: :model do
         expect(@item.errors.full_messages).to include('Prefecture must be other than 1')
       end
       it "scheduled_delivery_idが1では保存できない" do
+        @item.scheduled_delivery_id = 1
+        @item.valid?
+        expect(@item.errors.full_messages).to include('Scheduled delivery must be other than 1')
       end
       it "imageが空では保存できない" do
         @item.image = nil
