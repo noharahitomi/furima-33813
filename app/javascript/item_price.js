@@ -1,6 +1,4 @@
-
-
-window.addEventListener('load', () => {
+function enterPrice(){
   const priceInput = document.getElementById("item-price");
   priceInput.addEventListener("input", () => {
     const inputValue = priceInput.value;
@@ -9,4 +7,7 @@ window.addEventListener('load', () => {
     const profit = document.getElementById("profit");
     profit.innerHTML = Math.floor(inputValue - addTaxDom.innerHTML);
   })
-});
+};
+
+window.addEventListener('load', enterPrice );
+setInterval(enterPrice, 1000 )
