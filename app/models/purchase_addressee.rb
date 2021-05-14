@@ -1,4 +1,4 @@
-class PurchaseAddressees
+class PurchaseAddressee
   include Activemodel::module
     attr_accesser :user_id, :item_id, :number, :cvc, :exp_month, :exp_year, :post_code, :prefecture_id, :municipality, :address, :building_name, :tel_number, :purchase
 
@@ -11,7 +11,7 @@ class PurchaseAddressees
 
     def save
       purchase = Purchase.create(user_id: user_id, item_id: item_id, number: number, cvc: cvc, exp_month: exp_month, exp_year: exp_year)
-      Addressees.create(post_code: post_code, prefecture_id: prefecture_id, municipality: municipality, address: address, building_name: building_name, tel_number: tel_namuber, purchase: purchase)
+      Addressee.create(post_code: post_code, prefecture_id: prefecture_id, municipality: municipality, address: address, building_name: building_name, tel_number: tel_namuber, purchase: purchase)
     end
   end
 end
