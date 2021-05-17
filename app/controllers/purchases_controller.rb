@@ -5,6 +5,7 @@ class PurchasesController < ApplicationController
   end
 
   def create
+    binding.pry
     @purchase_addressee = PurchaseAddressee.new(purchase_params)
     if @purchase_addressee.valid?
       @purchase_addressee.save

@@ -68,3 +68,5 @@ gem 'mini_magick'
 gem 'image_processing'
 
 gem 'pry-rails'
+
+gem 'payjp'
