@@ -31,6 +31,11 @@ RSpec.describe PurchaseAddressee, type: :model do
         @purchase_addressee.valid?
         expect(@purchase_addressee.errors.full_messages).to include("Prefecture can't be blank")
       end
+      it 'prefecture_idが1では保存ができない' do
+        @purchase_addressee.prefecture_id = '1'
+        @purchase_addressee.valid?
+        expect(@purchase_addressee.errors.full_messages).to include("Prefecture can't be blank")
+      end
       it 'municipalityが空では保存ができない' do
         @purchase_addressee.municipality = ''
         @purchase_addressee.valid?
@@ -50,7 +55,7 @@ RSpec.describe PurchaseAddressee, type: :model do
         @purchase_addressee.valid?
         expect(@purchase_addressee.errors.full_messages).to include("Tel number can't be blank", "Tel number is invalid")
       end
-      it 'tel_numberは11桁以下の半角でなければ保存できない' do
+      it 'tel_numberは11桁か10桁の半角でなければ保存できない' do
         @purchase_addressee.tel_number = '１２３４５６７８９'
         @purchase_addressee.valid?
         expect(@purchase_addressee.errors.full_messages).to include("Tel number is invalid")
