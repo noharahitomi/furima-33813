@@ -55,6 +55,11 @@ RSpec.describe PurchaseAddressee, type: :model do
         @purchase_addressee.valid?
         expect(@purchase_addressee.errors.full_messages).to include("Tel number is invalid")
       end
+      it 'トークンが空では保存ができない' do
+        @purchase_addressee.token = nil
+        @purchase_addressee.valid?
+        expect(@purchase_addressee.errors.full_messages).to include("Token can't be blank")
+      end
     end
   end
 end
