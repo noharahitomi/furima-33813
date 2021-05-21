@@ -3,14 +3,10 @@ class PurchasesController < ApplicationController
   before_action :set_item
 
   def index
-    unless @item.user_id == current_user.id
-      unless @item.purchase.present?
-        @purchase_addressee = PurchaseAddressee.new
-      else
-        redirect_to root_path
-      end
-    else
+    if @item.purchase.present? || @item.user_id == current_user.id 
       redirect_to root_path
+    else
+      @purchase_addressee = PurchaseAddressee.new
     end
   end
 

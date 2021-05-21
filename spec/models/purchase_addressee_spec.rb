@@ -13,6 +13,10 @@ RSpec.describe PurchaseAddressee, type: :model do
       it 'すべての情報が正しく入力されている場合、保存ができる' do
         expect(@purchase_addressee).to be_valid
       end
+      it 'building_nameが空でも保存ができること' do
+        @purchase_addressee.building_name = ''
+        expect(@purchase_addressee).to be_valid
+      end
     end
 
     context '内容に問題がある場合' do
@@ -46,17 +50,23 @@ RSpec.describe PurchaseAddressee, type: :model do
         @purchase_addressee.valid?
         expect(@purchase_addressee.errors.full_messages).to include("Address can't be blank")
       end
-      it 'building_nameが空でも保存ができること' do
-        @purchase_addressee.building_name = ''
-        expect(@purchase_addressee).to be_valid
-      end
       it 'tel_numberが空では保存ができないこと' do
         @purchase_addressee.tel_number = ''
         @purchase_addressee.valid?
         expect(@purchase_addressee.errors.full_messages).to include("Tel number can't be blank", "Tel number is invalid")
       end
-      it 'tel_numberは11桁か10桁の半角でなければ保存できない' do
+      it 'tel_numberは半角でなければ保存できない' do
         @purchase_addressee.tel_number = '１２３４５６７８９'
+        @purchase_addressee.valid?
+        expect(@purchase_addressee.errors.full_messages).to include("Tel number is invalid")
+      end
+      it 'tel_numberは12桁以上では保存ができない' do
+        @purchase_addressee.tel_number = '1234567891011'
+        @purchase_addressee.valid?
+        expect(@purchase_addressee.errors.full_messages).to include("Tel number is invalid")
+      end
+      it 'tel_numberは英数混合では保存ができない' do
+        @purchase_addressee.tel_number = 'aa123456789'
         @purchase_addressee.valid?
         expect(@purchase_addressee.errors.full_messages).to include("Tel number is invalid")
       end
