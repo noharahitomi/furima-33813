@@ -36,7 +36,7 @@ RSpec.describe PurchaseAddressee, type: :model do
         expect(@purchase_addressee.errors.full_messages).to include("Prefecture can't be blank")
       end
       it 'prefecture_idが1では保存ができない' do
-        @purchase_addressee.prefecture_id = '1'
+        @purchase_addressee.prefecture_id = 1
         @purchase_addressee.valid?
         expect(@purchase_addressee.errors.full_messages).to include("Prefecture can't be blank")
       end
@@ -74,6 +74,16 @@ RSpec.describe PurchaseAddressee, type: :model do
         @purchase_addressee.token = nil
         @purchase_addressee.valid?
         expect(@purchase_addressee.errors.full_messages).to include("Token can't be blank")
+      end
+      it 'user_idが空では保存ができない' do
+        @purchase_addressee.user_id = ''
+        @purchase_addressee.valid?
+        expect(@purchase_addressee.errors.full_messages).to include("User can't be blank")
+      end
+      it 'item_idが空では保存ができない' do
+        @purchase_addressee.item_id = ''
+        @purchase_addressee.valid?
+        expect(@purchase_addressee.errors.full_messages).to include("Item can't be blank")
       end
     end
   end
