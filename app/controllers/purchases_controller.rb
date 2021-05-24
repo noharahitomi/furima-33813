@@ -1,6 +1,6 @@
 class PurchasesController < ApplicationController
-  before_action :authenticate_user!
-  before_action :set_item
+  before_action :authenticate_user!, only: [:index,:create]
+  before_action :set_item, only: [:index, :create]
 
   def index
     if @item.purchase.present? || @item.user_id == current_user.id 

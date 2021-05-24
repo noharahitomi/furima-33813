@@ -70,6 +70,11 @@ RSpec.describe PurchaseAddressee, type: :model do
         @purchase_addressee.valid?
         expect(@purchase_addressee.errors.full_messages).to include("Tel number is invalid")
       end
+      it 'tel_numberは9桁以下では保存ができない' do
+        @purchase_addressee.tel_number = "000999999"
+        @purchase_addressee.valid?
+        expect(@purchase_addressee.errors.full_messages).to include("Tel number is invalid")
+      end
       it 'トークンが空では保存ができない' do
         @purchase_addressee.token = nil
         @purchase_addressee.valid?
