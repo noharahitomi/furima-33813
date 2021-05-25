@@ -1,7 +1,7 @@
 class ItemsController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
   before_action :set_item, except: [:index, :new, :create]
-  before_action :signed_in_check, only: [:edit, :updat, :destroy]
+  before_action :signed_in_check, only: [:edit, :update, :destroy]
 
   def index
     @items = Item.all
@@ -24,6 +24,9 @@ class ItemsController < ApplicationController
   end
 
   def edit 
+    if @item.purchase.present?
+      redirect_to root_path
+    end
   end
 
   def update
@@ -50,7 +53,7 @@ class ItemsController < ApplicationController
   end
 
   def signed_in_check
-    unless current_user.id == @item.user_id
+    unless current_user.id == @item.user_id || @item.purchase.present?
       redirect_to root_path
     end
   end
