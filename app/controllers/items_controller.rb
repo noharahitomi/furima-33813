@@ -4,7 +4,7 @@ class ItemsController < ApplicationController
   before_action :signed_in_check, only: [:edit, :update, :destroy]
 
   def index
-    @items = Item.all
+    @items = Item.all.order(id: "DESC")
   end
 
   def new
